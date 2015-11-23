@@ -2,8 +2,8 @@
 {% from 'php/ng/map.jinja' import php with context %}
 {% from "php/ng/ini.jinja" import php_ini %}
 
-{% set settings = php.ini.defaults %}
-{% for key, value in php.cli.ini.settings.iteritems() %}
+{% set settings = php.xcache.ini.defaults %}
+{% for key, value in php.xcache.ini.settings.iteritems() %}
   {% if settings[key] is defined %}
     {% do settings[key].update(value) %}
   {% else %}
@@ -11,5 +11,5 @@
   {% endif %}
 {% endfor %}
 
-php_cli_ini:
-  {{ php_ini(php.lookup.cli.ini, php.cli.ini.opts, settings) }}
+php_xcache_ini:
+  {{ php_ini(php.lookup.xcache.ini, php.xcache.ini.opts, settings) }}
